@@ -7,6 +7,8 @@ namespace FoccoEmFrente.Kanban.Application.Entities
     public class Music : Entity, IAggregateRoot
     {
         public string Tittle { get; set; }
+        
+        public string Author { get; set; }
 
         public string Style  { get; set; }
 

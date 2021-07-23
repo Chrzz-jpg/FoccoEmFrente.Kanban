@@ -18,10 +18,13 @@ namespace FoccoEmFrente.Kanban.Application.Mapping
                 .HasMaxLength(100)
                 .IsRequired();
 
+            builder.Property(c => c.Author)
+               .HasColumnType("varchar(100)")
+               .HasMaxLength(100);
+
             builder.Property(c => c.Style)
                 .HasColumnType("varchar(100)")
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
             builder.Property(c => c.HumorPrincipal)
                .HasColumnType("varchar(100)")
