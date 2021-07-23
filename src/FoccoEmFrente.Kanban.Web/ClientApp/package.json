@@ -15,11 +15,12 @@
     "reactstrap": "^8.4.1",
     "rimraf": "^2.6.2"
   },
-  "devDependencies": {
-    "ajv": "^6.9.1",
-    "cross-env": "^5.2.0",
-    "nan": "^2.14.1"
-  },
+   "devDependencies": {
+      "merge": ">=2.1.1",
+      "ajv": "^6.9.1",
+      "cross-env": "^5.2.0",
+      "nan": "^2.14.1"
+    },
   "eslintConfig": {
     "extends": "react-app"
   },
