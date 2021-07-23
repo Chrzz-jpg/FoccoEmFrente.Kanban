@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FoccoEmFrente.Kanban.Api.Controllers
@@ -39,17 +40,32 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
 
         //Listar todas as musicas
 
-        //              NÃO FUNCIONANDO 
         [HttpGet]
-        public async Task<IActionResult> Listar(Guid userId)
+        public async Task<IActionResult> Listar(string humor, string nome, string author, string style)
         {
+
             var musics = await _musicService.GetAllAsync(userId);
 
-            if (musics == null)
-                throw new Exception("Música não encontrada");
+                //Filtragem de keys por API
+                if (!string.IsNullOrEmpty(humor))
+                    musics = musics
+                        .Where(music => music.HumorPrincipal.ToLower() == humor.ToLower() || music.HumorSecundary.ToLower() == humor.ToLower());
+
+                if (!string.IsNullOrEmpty(nome))
+                    musics = musics
+                        .Where(music => music.Tittle.ToLower() == nome.ToLower());
+
+                if (!string.IsNullOrEmpty(author))
+                    musics = musics
+                        .Where(music => music.Author.ToLower() == author.ToLower());
+
+                if (!string.IsNullOrEmpty(style))
+                    musics = musics
+                        .Where(music => music.Style.ToLower() == style.ToLower());
 
             return Ok(musics);
         }
+        
 
         //Listar musica especifica 
         [HttpGet("{id}")]
@@ -64,22 +80,8 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
 
             return Ok(musics);
         }
-        /* PRECISO APRENDER FAZER O GET EM ROTAS DIFERENTES E FAZER ELE BUSCAR EM 
-         * HUMOR PRIMARIO E SECUNDÁRIO
-         * 
-        [HttpGet("{humor}")]
-        public async Task<IActionResult> SelecionarPorHumor(string humor1)
-        {
-            var musics = await _musicService.GetByHumorAsync(humor1, userId);
+      
 
-            //Caso a pesquisa não encontre o item
-            //o retorno será um 404-NotFound sem mais info's
-            if (musics == null)
-                return NotFound();
-
-            return Ok(musics);
-        }
-        */
         //Adicionar uma musica
         [HttpPost]
         public async Task<IActionResult> Inserir(Music music)

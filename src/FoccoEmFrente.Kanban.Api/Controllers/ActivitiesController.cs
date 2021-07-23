@@ -29,7 +29,7 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
         protected Guid userId => Guid.Parse(_userManager.GetUserId(User));
 
         [HttpGet]
-        public async Task<IActionResult> ListarAsync(Guid userId)
+        public async Task<IActionResult> ListarAsync()
         {
             var activities = await _activityService.GetAllAsync(userId);
             

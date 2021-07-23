@@ -50,7 +50,7 @@ namespace FoccoEmFrente.Kanban.Application.Repositories
         public async Task<Music> GetByHumorAsync(string humor, Guid userId)
         {
             return await DbSet
-                .Where(activities =>activities.HumorPrincipal == humor && activities.UserId == userId)
+                .Where(activities =>(activities.HumorPrincipal == humor || activities.HumorSecundary == humor)  && activities.UserId == userId)
                 .FirstOrDefaultAsync();
         }
 
