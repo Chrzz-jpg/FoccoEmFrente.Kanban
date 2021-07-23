@@ -47,9 +47,11 @@ namespace FoccoEmFrente.Kanban.Application.Repositories
                            .ToListAsync();
         }
 
-        public Task<Music> GetByHumorAsync(string humor, Guid userId)
+        public async Task<Music> GetByHumorAsync(string humor, Guid userId)
         {
-            throw new NotImplementedException();
+            return await DbSet
+                .Where(activities =>activities.HumorPrincipal == humor && activities.UserId == userId)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Music> GetByIdAsync(Guid id, Guid userId)

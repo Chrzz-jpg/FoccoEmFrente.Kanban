@@ -1,4 +1,5 @@
 ﻿using FoccoEmFrente.Kanban.Api.Controllers.Attributes;
+using FoccoEmFrente.Kanban.Application.Entities;
 using FoccoEmFrente.Kanban.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +38,8 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
 
 
         //Listar todas as musicas
+
+        //              NÃO FUNCIONANDO 
         [HttpGet]
         public async Task<IActionResult> Listar(Guid userId)
         {
@@ -48,37 +51,65 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
             return Ok(musics);
         }
 
-
-        /*
-        
         //Listar musica especifica 
         [HttpGet("{id}")]
-        public Selecionar(Guid id)
+        public async Task<IActionResult> Selecionar(Guid id)
         {
-           
-        }
+            var musics = await _musicService.GetByIdAsync(id, userId);
 
-        //Adicionar uma musica
-        [HttpPost]
-        public Inserir(Activity activity)
-        {
+            //Caso a pesquisa não encontre o item
+            //o retorno será um 404-NotFound sem mais info's
+            if (musics == null)
+                return NotFound();
 
+            return Ok(musics);
         }
+        /* PRECISO APRENDER FAZER O GET EM ROTAS DIFERENTES E FAZER ELE BUSCAR EM 
+         * HUMOR PRIMARIO E SECUNDÁRIO
+         * 
+        [HttpGet("{humor}")]
+        public async Task<IActionResult> SelecionarPorHumor(string humor1)
+        {
+            var musics = await _musicService.GetByHumorAsync(humor1, userId);
 
-        //Atualizar uma musica ou estilo ou humores
-        [HttpPut]
-        public Atualizar(Activity activity)
-        {
-         
-        }
-        
-        //deletar uma musica        
-        [HttpDelete("{id}")]
-        public DeletarById(Guid id)
-        {
-            
+            //Caso a pesquisa não encontre o item
+            //o retorno será um 404-NotFound sem mais info's
+            if (musics == null)
+                return NotFound();
+
+            return Ok(musics);
         }
         */
+        //Adicionar uma musica
+        [HttpPost]
+        public async Task<IActionResult> Inserir(Music music)
+        {
+            music.UserId = userId;
+
+            var newMusic = await _musicService.AddAsync(music);
+
+            return Ok(newMusic);
+        }
+  
+        [HttpPut]
+        public async Task<IActionResult> Alterar(Music music)
+        {
+            music.UserId = userId;
+
+            var updated = await _musicService.UpdateAsync(music);
+
+            return Ok(updated);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Deletar(Music music)
+        {
+            music.UserId = userId;
+
+            var deleted = await _musicService.RemoveAsync(music);
+
+            return Ok(deleted);
+        }
 
     }
 }
