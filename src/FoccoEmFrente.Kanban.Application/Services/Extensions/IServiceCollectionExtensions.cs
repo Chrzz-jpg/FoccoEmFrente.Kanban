@@ -14,6 +14,7 @@ namespace FoccoEmFrente.Kanban.Application.Services.Extensions
         public static void AddApplicationServices(this IServiceCollection services) 
         {
             services.AddScoped<IActivityService, ActivityService>();
+            services.AddScoped<IMusicService, MusicService>();
         }
     }
 }

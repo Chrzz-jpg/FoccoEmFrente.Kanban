@@ -15,6 +15,7 @@ namespace FoccoEmFrente.Kanban.Application.Context
         }
 
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<Music> Musics { get; set; }
 
         public async Task<bool> CommitAsync()
         {

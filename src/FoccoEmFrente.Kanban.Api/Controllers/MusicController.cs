@@ -1,18 +1,14 @@
 ﻿using FoccoEmFrente.Kanban.Api.Controllers.Attributes;
-using FoccoEmFrente.Kanban.Application.Entities;
-using FoccoEmFrente.Kanban.Application.Repositories;
 using FoccoEmFrente.Kanban.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FoccoEmFrente.Kanban.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] //pega o nome prefixo do controller e define como rota
     [ApiController]
     [ValidateModelState]
     [Authorize]
@@ -28,75 +24,61 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
                 talvez playlist
                 talvez searchs com youtube
          */
-        public MusicController(IActivityService activityService, UserManager<IdentityUser> userManager)
+        /// preciso criar Controller -> Entidade ->
+        /// 
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IMusicService _musicService;
+        public MusicController(IMusicService musicService, UserManager<IdentityUser> userManager)
         {
-            _activityService = activityService;
+            _musicService = musicService;
             _userManager = userManager;
         }
-
         protected Guid userId => Guid.Parse(_userManager.GetUserId(User));
 
+
+        //Listar todas as musicas
         [HttpGet]
-        public async Task<IActionResult> ListarAsync(Guid userId)
+        public async Task<IActionResult> Listar(Guid userId)
         {
-            var activities = await _activityService.GetAllAsync(userId);
+            var musics = await _musicService.GetAllAsync(userId);
 
-            if (activities == null)
-                throw new Exception("Atividade não encontrada");
-            return Ok(activities);
+            if (musics == null)
+                throw new Exception("Música não encontrada");
+
+            return Ok(musics);
         }
 
+
+        /*
+        
+        //Listar musica especifica 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Selecionar(Guid id)
+        public Selecionar(Guid id)
         {
-            var activities = await _activityService.GetByIdAsync(id, userId);
-
-            //Caso a pesquisa não encontre o item
-            //o retorno será um 404-NotFound sem mais info's
-            if (activities == null)
-                return NotFound();
-
-            return Ok(activities);
+           
         }
 
+        //Adicionar uma musica
         [HttpPost]
-        public async Task<IActionResult> Inserir(Activity activity)
+        public Inserir(Activity activity)
         {
-            activity.UserId = userId;
 
-            var newActivity = await _activityService.AddAsync(activity);
-
-            return Ok(newActivity);
         }
 
+        //Atualizar uma musica ou estilo ou humores
         [HttpPut]
-        public async Task<IActionResult> Alterar(Activity activity)
+        public Atualizar(Activity activity)
         {
-            activity.UserId = userId;
-
-            var updated = await _activityService.UpdateAsync(activity);
-
-            return Ok(updated);
+         
         }
-
-        [HttpDelete]
-        public async Task<IActionResult> Deletar(Activity activity)
-        {
-            activity.UserId = userId;
-
-            var deleted = await _activityService.RemoveAsync(activity);
-
-            return Ok(deleted);
-        }
-
+        
+        //deletar uma musica        
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletarById(Guid id)
+        public DeletarById(Guid id)
         {
-
-            var deleted = await _activityService.RemoveByIdAsync(id, userId);
-
-            return Ok(deleted);
+            
         }
+        */
 
     }
 }

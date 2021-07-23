@@ -10,6 +10,7 @@ namespace FoccoEmFrente.Kanban.Application.Repositories.Extensions
         public static void AddApplicationRepositories(this IServiceCollection services) 
         {
             services.AddScoped<IActivityRepository, ActivityRepository>();
+            services.AddScoped<IMusicRepository, MusicRepository>();
         }
     }
 }
