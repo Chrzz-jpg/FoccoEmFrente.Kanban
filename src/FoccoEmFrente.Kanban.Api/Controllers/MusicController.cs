@@ -92,7 +92,7 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
 
             return Ok(newMusic);
         }
-  
+        
         [HttpPut]
         public async Task<IActionResult> Alterar(Music music)
         {
