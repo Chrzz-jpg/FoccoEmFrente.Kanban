@@ -1,6 +1,6 @@
 <h1 align="center">FoccoEmFrente.Kanban</h1>
 
-## Plataforma Kanban desenvolvida em parceria com a empresa Focco - Soluções de Gestão afim de desenvolver habilidades em C# e React.
+<h2 align="center">  Plataforma Kanban desenvolvida em parceria com a empresa Focco - Soluções de Gestão afim de desenvolver habilidades em C# e React.</h2>
 <h4 align="center"> 
 	🚧  Primerira versão 🚀 Finalizada...  🚧
 </h4>
