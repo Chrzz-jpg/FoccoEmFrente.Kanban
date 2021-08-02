@@ -18,7 +18,7 @@
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [.NET Core SDK]( https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe), [ Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
-Além disto usaremos um editor para trabalhar com o código back-end: [Visual Studio Community 2019]([Visual Studio Community 2019](), [.NET Core SDK]( https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe), [ Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
+Além disto usaremos um editor para trabalhar com o código back-end: [Visual Studio Community 2019]([Visual Studio Community 2019](), [.NET Core SDK]( https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe)[ASP .NET Runtime] (https://cdn.discordapp.com/attachments/617117168424845356/866815026346459156/aspnetcore-runtime-3.1.16-win-x64.exe), [ Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
 ), e outro para o código front-end [Visual Studio Code](https://code.visualstudio.com/).
 O código front-end se encontra dentro de: -> FoccoEmFrente.Kanban.Web -> ClientApp -> src.
 Para testarmos nossas API's e rotas usaremos o [Postman] (https://dl.pstmn.io/download/latest/win64) OBS: Se você estiver testando em hambiente local, deverá desabilitar a comunicação SSL dentro do Postman.
@@ -30,27 +30,41 @@ Para testarmos nossas API's e rotas usaremos o [Postman] (https://dl.pstmn.io/do
 $ git clone <https://github.com/boottD/FoccoEmFrente.Kanban.git>
 
 #instale o visual studio community
-	$1. A instalação deve ser realizada com no mínimo as seguintes opções:
-		$1. ASP.NET e desenvolvimento Web
-		$2. Desenvolvimento entre plataformas .NET
-		$3. Idioma padrão inglês
+	1. A instalação deve ser realizada com no mínimo as seguintes opções:
+		1. ASP.NET e desenvolvimento Web
+		2. Desenvolvimento entre plataformas .NET
+		3. Idioma padrão inglês
 		
 #Instale a última versão do SDK do .NET Core 3.1.2
+	1. .NET Core SDk 
+	2 ASP .NET Runtime
+	
+#Instale Node e Yarn
+	1. Instalar a instalação do Node.JS
+	1. Instalar com as configurações padrão
+	2. No final do processo, executar o comando "node -v" no terminal
+	3. Deve ser exibido a versão do node, caso não funcione, tente realizar a instalação novamente e verifique se o path do node está nas variáveis de ambiente
+	2. Com o node instalado, instalar o yarn com o comando abaixo:
+	1. npm install -g yarn
+	2. executar o comando `yarn -v` para verificar a versão e se está instalado corretamente
 
+#Instale o Visual Studio Code
+	1. Realize a instalação do visual studio code.
+	2. No final da instalação, recomendamos que os checks para ação de "Abrir o Code" pelo Windows Explorer sejam selecionados.
+	3. Instale as extensões recomendadas: 
+	1. Abra o Visual Studio Code
+	2. Abra as Extensões (Ctrl + Shift + X)
+	3. Instale as extensões abaixo:
+	1. Prettier - Code formatter
+	2. vscode-icons
 
+#Instale o Postman
+	1. Realizar a instalação padrão do postman
 
 # Acesse a pasta do Projeto Base e acesse o arquivo FoccoEmFrente.Kanban.sln
 
 # Ou abra este projeto/solução de dentro do Visual Studio Community 2019
 
-# Vá para a pasta server
-$ cd server
+# O servidor inciará na porta:5000 (HTTP) ou na porta:5001 (HTTPS) - acesse <http://localhost:porta>
 
-# Instale as dependências
-$ npm install
-
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev:server
-
-# O servidor inciará na porta:3333 - acesse <http://localhost:3333>
 ```
