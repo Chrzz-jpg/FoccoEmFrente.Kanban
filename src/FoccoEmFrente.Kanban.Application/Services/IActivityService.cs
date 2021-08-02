@@ -1,4 +1,5 @@
 ﻿using FoccoEmFrente.Kanban.Application.Entities;
+using FoccoEmFrente.Kanban.Application.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +16,9 @@ namespace FoccoEmFrente.Kanban.Application.Services
         Task<Activity> UpdateAsync(Activity activity);
         Task<Activity> RemoveAsync(Activity activity);
         Task<Activity> RemoveByIdAsync(Guid id, Guid userId);
-
-
+        Task<Activity> UpdateToTodoAsync(Guid id, Guid userId);
+        Task<Activity> UpdateToDoingAsync(Guid id, Guid userId);
+        Task<Activity> UpdateToDoneAsync(Guid id, Guid userId);
 
     }
 }

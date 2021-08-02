@@ -1,5 +1,6 @@
 ﻿using FoccoEmFrente.Kanban.Application.Context;
 using FoccoEmFrente.Kanban.Application.Entities;
+using FoccoEmFrente.Kanban.Application.Enums;
 using FoccoEmFrente.Kanban.Application.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -79,6 +80,31 @@ namespace FoccoEmFrente.Kanban.Application.Services
             return deletedActivity;
         }
 
+        //método genérico para os métodos de atualização utilizarem
+        public async Task<Activity> UpdateStatusAsync(Guid id, Guid userId, ActivityStatus status)
+        {
+            var activity = await GetByIdAsync(id, userId);
+            activity.Status = status;
+            return await UpdateAsync(activity);
+        }
+
+        public async Task<Activity> UpdateToTodoAsync(Guid id, Guid userId)
+        {
+            return await UpdateStatusAsync(id, userId, ActivityStatus.Todo);
+
+        }
+
+        public async Task<Activity> UpdateToDoingAsync(Guid id, Guid userId)
+        {
+            return await UpdateStatusAsync(id, userId, ActivityStatus.Doing);
+
+        }
+
+        public async Task<Activity> UpdateToDoneAsync(Guid id, Guid userId)
+        {
+            return await UpdateStatusAsync(id, userId, ActivityStatus.Done);
+        }
+        
         public void Dispose()
         {
             GC.SuppressFinalize(this);

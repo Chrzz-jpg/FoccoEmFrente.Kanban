@@ -88,7 +88,34 @@ namespace FoccoEmFrente.Kanban.Api.Controllers
             var deleted = await _activityService.RemoveByIdAsync(id, userId);
 
             return Ok(deleted);
+
         }
+
+        [HttpPut("{id}/todo")]
+        public async Task<IActionResult> UpdateStatusToTodo(Guid id)
+        {
+            var activity = await _activityService.UpdateToTodoAsync(id, userId);
+
+            return Ok(activity);
+        }
+        
+        [HttpPut("{id}/doing")]
+        public async Task<IActionResult> UpdateStatusToDoing(Guid id)
+        {
+            var activity = await _activityService.UpdateToDoingAsync(id, userId);
+
+            return Ok(activity);
+        }
+
+        [HttpPut("{id}/done")]
+        public async Task<IActionResult> UpdateStatusToDone(Guid id)
+        {
+            var activity = await _activityService.UpdateToDoneAsync(id, userId);
+
+            return Ok(activity);
+        }
+
+
 
     }
 }
