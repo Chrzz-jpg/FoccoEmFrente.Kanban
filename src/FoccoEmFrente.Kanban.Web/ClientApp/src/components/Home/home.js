@@ -49,7 +49,7 @@ export default function Home({ history }) {
   };
 
   const updateActivity = async (activity) => {
-    const response = await new HttpRequest("Activities", "PUT")
+    const response = await new HttpRequest("activities", "PUT")
       .setBody(activity)
       .setToken(token)
       .send();
@@ -65,12 +65,26 @@ export default function Home({ history }) {
   };
 
   const updateActivityStatus = async (activityId, status) => {
-    const activity = activities.find(a => a.id === activityId)
-    if(!activity)
+    const action = status === 0 ? "todo" : status === 1 ? "doing" : "done";
+
+    const response = await new HttpRequest(
+      `activities/${activityId}/${action}`,
+      "PUT"
+    )
+      .setToken(token)
+      .send();
+
+    if (!response.ok) {
+      window.alert([
+        "Não foi possível atualizar o status da atividade",
+        response.errorMessage,
+      ]);
       return;
-    activity.status = status;
-   await updateActivity(activity)
-    setActivities([...activities])
+    }
+    
+    //evita um request ao servidor, fazendo apenas um ao clonar o array de activities
+    activities.find((a) => a.id === activityId).status = status;
+    setActivities([...activities]); 
   };
 
   const deleteActivity = async (activity) => {
