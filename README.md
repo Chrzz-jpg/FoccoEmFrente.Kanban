@@ -23,7 +23,7 @@ Além disto usaremos um editor para trabalhar com o código back-end: [Visual St
 O código front-end se encontra dentro de: -> FoccoEmFrente.Kanban.Web -> ClientApp -> src.
 Para testarmos nossas API's e rotas usaremos o [Postman] (https://dl.pstmn.io/download/latest/win64) OBS: Se você estiver testando em hambiente local, deverá desabilitar a comunicação SSL dentro do Postman.
 
-### 🎲 Rodando o Back End (servidor)
+### 🎲 Rodando o Back End e o Front End
 
 ```bash
 # Clone este repositório
