@@ -61,10 +61,16 @@ $ git clone <https://github.com/boottD/FoccoEmFrente.Kanban.git>
 #Instale o Postman
 	1. Realizar a instalação padrão do postman
 
-# Acesse a pasta do Projeto Base e acesse o arquivo FoccoEmFrente.Kanban.sln
-
-# Ou abra este projeto/solução de dentro do Visual Studio Community 2019
+# Acesse a pasta do Projeto Base e acesse o arquivo FoccoEmFrente.Kanban.sln Ou abra este projeto/solução de dentro do Visual Studio Community 2019
 
 # O servidor inciará na porta:5000 (HTTP) ou na porta:5001 (HTTPS) - acesse <http://localhost:porta>
 
 ```
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [React](https://pt-br.reactjs.org/)
+- [.NET](https://docs.microsoft.com/en-us/dotnet/)
+- [ASP .NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
+- [MSQL](https://www.mysql.com/)
