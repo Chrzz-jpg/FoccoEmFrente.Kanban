@@ -4,7 +4,8 @@
 <h4 align="center"> 
 	🚧  Primerira versão 🚀 Finalizada...  🚧
 </h4>
-## Features
+
+### Features
 
 - [x] Cadastro de usuário
 - [x] Login
@@ -13,7 +14,7 @@
 - [x] Atualização de atividades
 - [x] Atualização de status
 
-### Pré-requisitos
+#### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [.NET Core SDK]( https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe), [ Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
@@ -26,10 +27,21 @@ Para testarmos nossas API's e rotas usaremos o [Postman] (https://dl.pstmn.io/do
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/tgmarinho/nlw1>
+$ git clone <https://github.com/boottD/FoccoEmFrente.Kanban.git>
 
-# Acesse a pasta do projeto no terminal/cmd
-$ cd nlw1
+#instale o visual studio community
+	$1. A instalação deve ser realizada com no mínimo as seguintes opções:
+		$1. ASP.NET e desenvolvimento Web
+		$2. Desenvolvimento entre plataformas .NET
+		$3. Idioma padrão inglês
+		
+#Instale a última versão do SDK do .NET Core 3.1.2
+
+
+
+# Acesse a pasta do Projeto Base e acesse o arquivo FoccoEmFrente.Kanban.sln
+
+# Ou abra este projeto/solução de dentro do Visual Studio Community 2019
 
 # Vá para a pasta server
 $ cd server
