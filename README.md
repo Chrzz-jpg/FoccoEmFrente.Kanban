@@ -21,7 +21,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 </br>[Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
 </br>Além disto usaremos um editor para trabalhar com o código back-end: [Visual Studio Community 2019](https://visualstudio.microsoft.com/pt-br/thank-you-downloading-visual-studio/?sku=Community&rel=16), e outro para o código front-end [Visual Studio Code](https://code.visualstudio.com/).
 </br> O código front-end se encontra dentro de: -> <b>FoccoEmFrente.Kanban.Web</b> -> <b>ClientApp</b> -> <b>src</b>.
-</br> Para testarmos nossas <b>API's</b> e rotas usaremos o [Postman] (https://dl.pstmn.io/download/latest/win64) <b>OBS</b>: Se você estiver testando em hambiente local, deverá desabilitar a comunicação SSL dentro do Postman.
+</br> Para testarmos nossas <b>API's</b> e rotas usaremos o [Postman](https://dl.pstmn.io/download/latest/win64) <b>OBS</b>: Se você estiver testando em hambiente local, deverá desabilitar a comunicação SSL dentro do Postman.
 
 ### 🎲 Rodando o Back End e o Front End
 
