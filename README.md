@@ -17,15 +17,10 @@
 #### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-</br> [.NET Core SDK]( https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe)</br> 
-[Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
-Além disto usaremos um editor para trabalhar com o código back-end: 
-</br> [Visual Studio Community 2019](https://visualstudio.microsoft.com/pt-br/thank-you-downloading-visual-studio/?sku=Community&rel=16), 
-</br> [.NET Core SDK]( https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe), 
-</br> [ASP .NET Runtime](https://cdn.discordapp.com/attachments/617117168424845356/866815026346459156/aspnetcore-runtime-3.1.16-win-x64.exe),
-</br> [ Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
-), e outro para o código front-end </br> [Visual Studio Code](https://code.visualstudio.com/).
-O código front-end se encontra dentro de: -> FoccoEmFrente.Kanban.Web -> ClientApp -> src.
+</br> [.NET Core SDK]( https://download.visualstudio.microsoft.com/download/pr/56131147-65ea-47d6-a945-b0296c86e510/44b43b7cb27d55081e650b9a4188a419/dotnet-sdk-3.1.201-win-x64.exe) & [ASP .NET Runtime]( https://cdn.discordapp.com/attachments/617117168424845356/866815026346459156/aspnetcore-runtime-3.1.16-win-x64.exe)
+</br>[Node e Yarn](https://nodejs.org/download/release/v12.8.1/node-v12.8.1-x64.msi). 
+</br>Além disto usaremos um editor para trabalhar com o código back-end: [Visual Studio Community 2019](https://visualstudio.microsoft.com/pt-br/thank-you-downloading-visual-studio/?sku=Community&rel=16), e outro para o código front-end [Visual Studio Code](https://code.visualstudio.com/).
+</br> O código front-end se encontra dentro de: -> <b>FoccoEmFrente.Kanban.Web</b> -> ClientApp -> src.
 Para testarmos nossas API's e rotas usaremos o </br> [Postman] (https://dl.pstmn.io/download/latest/win64) OBS: Se você estiver testando em hambiente local, deverá desabilitar a comunicação SSL dentro do Postman.
 
 ### 🎲 Rodando o Back End e o Front End
