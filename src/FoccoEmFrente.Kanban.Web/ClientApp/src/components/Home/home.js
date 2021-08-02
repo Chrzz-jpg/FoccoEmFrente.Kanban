@@ -1,43 +1,104 @@
 import React, { useEffect, useState } from "react";
-import Pipe from "./Pipe"
-import "./home.css"
+import Pipe from "./Pipe";
+import "./home.css";
+import HttpRequest from "../../utils/HttpRequest/Http-request";
+
 export default function Home({ history }) {
+  const [activities, setActivities] = useState([]);
+  const token = localStorage.getItem("token");
+  if (!token) history.push("/login");
 
-   const [activities, setActivities] = useState([]);
-   const token = localStorage.getItem("token");
-   if(!token) history.push("/login");
-
-   const loadActivity = async () => {
-      const response = await fetch("/api/activities", {
-          method: "GET",
-          headers: {
-             "Content-Type": "application/json",
-             "Accept" : "application/json",
-             "Authorization": `Bearer ${token}`
-          }
-       });
-    
-       const responseContent = await response.json();
-    
-       if(!response.ok){
-          window.alert(["Não foi possível encontrar atividaddes", responseContent]);
-          return;
-       }
-       setActivities(responseContent);
-   }
+  const loadActivity = async () => {
+    const response = await new HttpRequest("activities", "GET")
+      .setToken(token)
+      .send();
+    if (!response.ok) {
+      window.alert([
+        "Não foi possível encontrar atividaddes",
+        response.errorMessage,
+      ]);
+      return;
+    }
+    setActivities(response.data);
+  };
 
   const onSair = () => {
     localStorage.removeItem("token");
     history.push("/login");
   };
 
-//utilizando um método assincrono para o callback
-  useEffect( () => {
-     async function fetchData() {
-        await loadActivity();
-     }
+  const addActivity = async () => {
+    const activity = {
+      title: "Nova Atividade",
+      status: 0,
+    };
+    const response = await new HttpRequest("activities", "POST")
+      .setBody(activity)
+      .setToken(token)
+      .send();
 
-     fetchData();
+    if (!response.ok) {
+      window.alert([
+        "Não foi possível insrir a atividade",
+        response.errorMessage,
+      ]);
+      return;
+    }
+
+    setActivities([...activities, response.data]);
+  };
+
+  const updateActivity = async (activity) => {
+    const response = await new HttpRequest("Activities", "PUT")
+      .setBody(activity)
+      .setToken(token)
+      .send();
+
+    if (!response.ok) {
+      window.alert([
+        "Não foi possível atualizar a atividade",
+        response.errorMessage,
+      ]);
+      await loadActivity();
+      return;
+    }
+  };
+
+  const updateActivityStatus = async (activityId, status) => {
+    const activity = activities.find(a => a.id === activityId)
+    if(!activity)
+      return;
+    activity.status = status;
+   await updateActivity(activity)
+    setActivities([...activities])
+  };
+
+  const deleteActivity = async (activity) => {
+    const response = await new HttpRequest(
+      `activities/${activity.id}`,
+      "DELETE"
+    )
+      .setToken(token)
+      .send();
+
+    if (!response.ok) {
+      window.alert([
+        "Não foi possível deletar a atividade",
+        response.errorMessage,
+      ]);
+      return;
+    }
+
+    setActivities(activities.filter((a) => a.id !== activity.id));
+  };
+
+  //utilizando um método assincrono para o callback
+  useEffect(() => {
+    async function fetchData() {
+      await loadActivity();
+    }
+
+    fetchData();
   }, []);
 
   return (
@@ -50,15 +111,26 @@ export default function Home({ history }) {
         e mantenha elas sempre atualizadas!
       </p>
       <div className="canvas">
-         <Pipe activities={activities} status={0}/>
-         <Pipe activities={activities} status={1}/>
-         <Pipe activities={activities} status={2}/>
+        {[0, 1, 2].map((status, index) => {
+          return (
+            <Pipe
+              key={index}
+              activities={activities}
+              status={status}
+              onDelete={deleteActivity}
+              onUpdate={updateActivity}
+              onActivityDrop={(activityId) =>
+                updateActivityStatus(activityId, status)
+              }
+            />
+          );
+        })}
       </div>
-      <button className="btn btn-primary">
-         Adicionar nova atividade
+      <button className="btn btn-primary" onClick={addActivity}>
+        Adicionar nova atividade
       </button>
       <button className="btn btn-secundary" onClick={onSair}>
-         Sair
+        Sair
       </button>
     </div>
   );

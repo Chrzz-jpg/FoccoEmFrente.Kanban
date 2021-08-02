@@ -1,37 +1,36 @@
 import React, { useState } from "react";
+import HttpRequest from "../../utils/HttpRequest/Http-request";
 
 export default function Login({ history }) {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formLogin, setFormLogin] = useState({ email: "", password: ""});
+
+  const setEmail = (event) => {
+    setFormLogin({...formLogin, email: event.target.value})
+  }
+
+  const setPassword = (event) => {
+    setFormLogin({...formLogin, password: event.target.value });
+  }
 
   const onLogin = async (event) => {
-   event.preventDefault();
+    event.preventDefault();
 
-  const response = await fetch("/api/account/login", {
-      method: "POST",
-      headers: {
-         "Content-Type": "application/json",
-         "Accept" : "application/json"
-      },
-      body: JSON.stringify({
-         email: email,
-         password: password      
-      })
-   });
+    const request = new HttpRequest("account/login", "POST");
 
-   const responseContent = await response.json();
+    request.setBody(formLogin);
 
-   if(!response.ok){
-      window.alert(responseContent);
+    const response = await request.send();
+
+    if (!response.ok) {
+      window.alert(response);
       return;
-   }
+    }
 
-   localStorage.setItem("token", responseContent);
-   history.push("/home");
+    localStorage.setItem("token", response.data);
 
-   console.log(response);
-}
+    history.push("/");
+  };
 
   const onRegister = () => {
     history.push("/register");
@@ -45,22 +44,21 @@ export default function Login({ history }) {
       </p>
       <form onSubmit={onLogin}>
         <label htmlFor="email">E-mail</label>
-        <input 
-         id="email" 
-         type="email" 
-         placeholder="E-mail"
-         value={email}
-         onChange={(event) => setEmail(event.target.value)}
+        <input
+          id="email"
+          type="email"
+          placeholder="E-mail"
+          value={formLogin.email}
+          onChange={setEmail}
         ></input>
         <label htmlFor="password">Senha</label>
         <input
-         id="password"
-         type="password"
-         placeholder="Senha"
-         value={password}
-         onChange={(event) => setPassword(event.target.value)}
-         >
-         </input>
+          id="password"
+          type="password"
+          placeholder="Senha"
+          value={formLogin.password}
+          onChange={setPassword}
+        ></input>
 
         <button className="btn btn-primary">Entrar</button>
 

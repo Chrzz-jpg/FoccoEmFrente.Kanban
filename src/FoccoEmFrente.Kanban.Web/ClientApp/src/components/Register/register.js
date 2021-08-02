@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import HttpRequest from "../../utils/HttpRequest/Http-request";
 
 export default function Register({ history }) {
   const [email, setEmail] = useState("");
@@ -8,30 +9,21 @@ export default function Register({ history }) {
   const onRegister = async (event) => {
       event.preventDefault();
 
-     const response = await fetch("/api/account/register", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-            "Accept" : "application/json"
-         },
-         body: JSON.stringify({
-            email: email,
-            password: password,
-            confirmPassword: confirmPassword
-         })
-      });
-
-      const responseContent = await response.json();
+      const response = await new HttpRequest("account/register", "POST")
+          .setBody({
+            email:email,
+            password:password,
+            confirmPassword:confirmPassword
+          })
+          .send();
 
       if(!response.ok){
-         window.alert(responseContent);
+         window.alert(response.errorMessage);
          return;
       }
 
-      localStorage.setItem("token", responseContent);
+      localStorage.setItem("token", response.data);
       history.push("/");
-
-      console.log(response);
    }
 
   const onVoltar = () => {
