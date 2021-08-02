@@ -8,11 +8,11 @@
 ### Features
 
 - [ x ] Cadastro de usuário
-- [x] Login
-- [x] Cadastro de atividades
-- [x] Exclusão de atividades
-- [x] Atualização de atividades
-- [x] Atualização de status
+- [ x ] Login
+- [ x ] Cadastro de atividades
+- [ x ] Exclusão de atividades
+- [ x ] Atualização de atividades
+- [ x ] Atualização de status
 
 #### Pré-requisitos
 
